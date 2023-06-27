@@ -1,2 +1,2 @@
-# nHODLRdD
-Nested HODLRdD algorithm for fast matrix-vector multiplication in $d$ dimensions. 
+# $nHODLRdD$
+Nested HODLR$d$D algorithm for fast matrix-vector multiplication in $d$ dimensions. 
