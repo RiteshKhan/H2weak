@@ -1,4 +1,4 @@
-# The $nHODLRdD$ and $s-nHODLRdD$ algorithms
+# The $nHODLRdD$ and $s-nHODLRdD$ accelerated iterative solver 
 This repository mainly contains two algorithms.
 1. The nested hierarchically off-diagonal low-rank matrix in $d$ dimensions ($nHODLRdD$)
 2. The semi-nested hierarchically off-diagonal low-rank matrix in $d$ dimensions ($s-nHODLRdD$)
