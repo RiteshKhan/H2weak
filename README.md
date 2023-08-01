@@ -1,4 +1,4 @@
-# $nHODLRdD$ and $s-nHODLRdD$
+# The $nHODLRdD$ and $s-nHODLRdD$ algorithms
 This repository contains mainly two algorithms.
 1. The nested hierarchically off-diagonal low-rank matrix in $d$ dimensions ($nHODLRdD$)
 2. The semi-nested hierarchically off-diagonal low-rank matrix in $d$ dimensions ($s-nHODLRdD$)
