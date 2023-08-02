@@ -12,6 +12,6 @@ User can run $3$ different types of fast iterative solver using this repository.
 1. $nHODLRdD$ accelerated iterative solver.
 2. $s-nHODLRdD$ accelerated iterative solver.
 3. $HODLRdD$ accelerated iterative solver.
-4. _____________________
+_____________________
 
 
