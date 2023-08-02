@@ -8,10 +8,10 @@ Users can also run the $HODLRdD$ accelerated iterative solver using this reposit
 ______________________________________________________________
 
 # How to run the code
-_____________________
 User can run $3$ different types of fast iterative solver using this repository.
 1. $nHODLRdD$ accelerated iterative solver.
 2. $s-nHODLRdD$ accelerated iterative solver.
 3. $HODLRdD$ accelerated iterative solver.
+4. _____________________
 
 
