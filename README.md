@@ -7,7 +7,7 @@ The $nHODLRdD$ and $s-nHODLRdD$ algorithms are the nested and sem-nested version
 Users can also run the $HODLRdD$ accelerated iterative solver using this repository by changing the flag in `Makefile` and the codes are self-explanatory. Currently, this repository works for $d=1,2,3$, i.e., in $1D$, $2D$ and $3D$.
 ______________________________________________________________
 
-## How to run the code
+# How to run the code
 User can run $3$ different types of fast iterative solver using this repository.
 1. $nHODLRdD$ accelerated iterative solver.
 2. $s-nHODLRdD$ accelerated iterative solver.
