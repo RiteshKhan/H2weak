@@ -14,6 +14,6 @@ User can run $3$ different types of fast iterative solver using this repository.
 3. $HODLRdD$ accelerated iterative solver.
 _____________________
 
-## Dependencies
+### Dependencies
 1. The [**Eigen**](https://eigen.tuxfamily.org) linear algebra libray
 
