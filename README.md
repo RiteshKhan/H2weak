@@ -23,6 +23,6 @@ ______________________________________________________________________
 ### Downloading the Source code
 The source code available in this repository can be cloned using:
 ```
-git clone https://github.com/RiteshKhan/nHODLRdD.git --recursive
+git clone https://github.com/riteshkhan/nHODLRdD.git --recursive
 ```
 
