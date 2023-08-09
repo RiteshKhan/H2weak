@@ -44,5 +44,5 @@ In $1D$ if we set the following in the `main` file,
 1. `atoi(argv[1])` $= N = 100000$ (Number of particles)
 2. `atoi(argv[2])` $=n_{max} = 100$ (Number of maximum particles in leaf clusters)
 3. `atoi(argv[3])` $=L=1$ (Semi-length of the cluster)
-4. `atoi(argv[4])` $=12$ NCA/ACA tolerance $= 10^{-12}$ and $\epsilon_{GMRES} = 10^{-12}$
-5. `atoi(argv[5])` $=0$ $0/1$
+4. `atoi(argv[4])` $=12$ (NCA/ACA tolerance $= 10^{-12}$ and $\epsilon_{GMRES} = 10^{-12}$)
+5. `atoi(argv[5])` $=0$ ($0=$ Intergral equation solver or $1=$ RBF interpolation)
