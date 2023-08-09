@@ -76,6 +76,6 @@ Storage (in GB): 0.1647 GB
 
 Compression ratio: 0.00205876
 
-The (norm-2) relative error in solution: 1.33411e-11
+The (norm-2) relative error in solution: 2.43411e-12
 ===========================================================================================
 ```
