@@ -40,13 +40,18 @@ Now the user can go to any directory to run the corresponding codes in $1D$ or $
 ```
 user@computer 1D/codes$ make -f Makefile1D.mk clean && make -f Makefile1D.mk
 ```
-In $1D$ if we set the following in the `main` file, 
+In $1D$ if we set the following inputs in the `main` file, 
 1. `atoi(argv[1])` $= N = 250000$ (Number of particles)
 2. `atoi(argv[2])` $=n_{max} = 100$ (Number of maximum particles in leaf clusters)
 3. `atoi(argv[3])` $=L=1$ (Semi-length of the cluster)
 4. `atoi(argv[4])` $=12$ (NCA/ACA tolerance $= 10^{-12}$ and $\epsilon_{GMRES} = 10^{-12}$)
 5. `atoi(argv[5])` $=1$ (Intergral equation solver=0 or RBF interpolation=1)
 
+```
+user@computer 1D/codes$ ./test 250000 100 1 12 1
+```
+
+If everything is fine one might get output like below.
 ```txt
 GMRES Parameters 
 Maximum Iterations : 500
