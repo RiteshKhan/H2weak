@@ -28,4 +28,4 @@ git clone https://github.com/riteshkhan/nHODLRdD.git --recursive
 ______________________________________________________________________
 
 ### Testing
-Make sure that you have set the path of the libraries correctly. The path can be modified in the `Makefile`.
+Make sure that you have set the path of the libraries correctly. The path can be modified in the `Makefile`. For testing purpose we have added two options (i) Integral Equation solver and (ii) RBF interpolation.
