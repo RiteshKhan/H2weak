@@ -20,7 +20,7 @@ _____________________
 3. An OpenMP enabled modern compiler (optional).
 ______________________________________________________________________
 
-### Downloading the Source code
+### Download the Source code
 The source code available in this repository can be cloned using:
 ```
 git clone https://github.com/riteshkhan/nHODLRdD.git --recursive
