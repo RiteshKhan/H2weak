@@ -46,3 +46,36 @@ In $1D$ if we set the following in the `main` file,
 3. `atoi(argv[3])` $=L=1$ (Semi-length of the cluster)
 4. `atoi(argv[4])` $=12$ (NCA/ACA tolerance $= 10^{-12}$ and $\epsilon_{GMRES} = 10^{-12}$)
 5. `atoi(argv[5])` $=0$ (Intergral equation solver=0 or RBF interpolation=1)
+
+```txt
+GMRES Parameters 
+Maximum Iterations : 500
+GMRES Tolerance : 1e-12
+
+Reached Solution before Max_Iterations 
+Reached the desired tol after 14 iterations
+Final resid 8.00989e-14
+********** Summary of HSS / HBS / nHODLR1D accelerated GMRES to solve a system **********
+
+
+The number of particles taken: 100000 and choice =  integral equation
+
+The maximum number of particles at leaf clusters: 100
+
+Depth of the tree: 10
+
+The final residual error is: 8.00989e-14
+
+The total number of iteration is: 14
+
+Total Assembly time: 8.35056s
+
+GMRES time: 0.494335s
+
+Storage (in GB): 0.1647 GB
+
+Compression ratio: 0.00205876
+
+The (norm-2) relative error in solution: 1.33411e-11
+===========================================================================================
+```
