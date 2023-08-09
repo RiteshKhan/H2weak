@@ -17,4 +17,4 @@ _____________________
 ### Dependencies
 1. The [**Eigen**](https://eigen.tuxfamily.org) linear algebra libray.
 2. The [**Boost**](https://www.boost.org/) library.
-
+3. An OpenMP enabled modern compiler (optional).
