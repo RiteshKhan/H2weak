@@ -40,4 +40,4 @@ Now the user can go to any directory to run the corresponding codes in $1D$ or $
 ```
 user@computer 1D$ make -f Makefile1D.mk clean && make -f Makefile1D.mk
 ```
-By default in $1D$, it will work for $N = 100000$, $n_{max} = 100$, $NCA/ACA \quad tol. = 10^{-12}$ and $tol_{GMRES} = 10^{-12}$
+By default in $1D$, it will work for $N = 100000$, $n_{max} = 100$, $NCA/ACA \quad tol. = 10^{-12}$ and $\epsilon_{GMRES} = 10^{-12}$
