@@ -3,11 +3,11 @@ int main(int argc, char *argv[])
 {
     //  srand(time(NULL));
     //  rand();
-    int cubeRootN = atoi(argv[1]);
-    int nParticlesInLeafAlong1D = atoi(argv[2]);
-    double L = atof(argv[3]);
-    int TOL_POW = atoi(argv[4]);
-    int Choice = atoi(argv[5]);
+    int cubeRootN = atoi(argv[1]);                  // Cube root of total particles, i.e., cbrt(N)
+    int nParticlesInLeafAlong1D = atoi(argv[2]);    // Maximum number of partilces along 1D at leaf level, i.e, cbrt(n_max) as per paper.
+    double L = atof(argv[3]);                       // Semi-length of the cluster
+    int TOL_POW = atoi(argv[4]);                    // Tolerance of the ACA/NCA
+    int Choice = atoi(argv[5]);                     // Integral equation = 0, RBF interpolation = 1
     int nLevels = ceil(3 * log(double(cubeRootN) / nParticlesInLeafAlong1D) / log(8));
     if (nLevels < 1)
     {

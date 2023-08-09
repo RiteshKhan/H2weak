@@ -1,0 +1,31 @@
+GMRES Parameters 
+Maximum Iterations : 500
+GMRES Tolerance : 1e-12
+
+Reached Solution before Max_Iterations 
+Reached the desired tol after 28 iterations
+Final resid 3.0572e-13
+********** Summary of nHODLR2D (nested HODLRdD) accelerated GMRES to solve a system **********
+
+
+The number of particles taken: 90000 and choice =  RBF interpolation
+
+The maximum number of particles at leaf clusters: 400
+
+Depth of the tree: 4
+
+The final residual error is: 3.0572e-13
+
+The total number of iteration is: 28
+
+Total Assembly time: 68.1836s
+
+GMRES time: 4.57271s
+
+Storage (in GB): 2.47347 GB
+
+Compression ratio: 0.0381709
+
+The (norm-2) relative error in solution: 2.01087e-12
+====================================================================================================
+

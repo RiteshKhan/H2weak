@@ -63,12 +63,11 @@ public:
 
         K->collect_all_potentials(output);
         K->reorder(output);
-        // std::cout << output << std::endl;
-        std::cout << "Assembly time for MAT-VEC: " << K->elapsed_assem << std::endl;
-        std::cout << "MAT-VEC time: " << K->elapsed_mvp << std::endl;
-        std::cout << "The error is: " << K->compute_total_error() << std::endl;
-        std::cout << std::endl;
-        std::cout << "===========================" << std::endl;
+        // std::cout << "Assembly time for MAT-VEC: " << K->elapsed_assem << std::endl;
+        // std::cout << "MAT-VEC time: " << K->elapsed_mvp << std::endl;
+        // std::cout << "The error is: " << K->compute_total_error() << std::endl;
+        // std::cout << std::endl;
+        // std::cout << "===========================" << std::endl;
     }
 #endif
 
@@ -104,11 +103,11 @@ public:
 
         K->collect_all_potential_nn(output);
         K->reorder(output);
-        std::cout << "Assembly time for MAT-VEC: " << K->elapsed_assem << std::endl;
-        std::cout << "MAT-VEC time: " << K->elapsed_mvp << std::endl;
-        std::cout << "The error is: " << K->compute_total_error() << std::endl;
-        std::cout << std::endl;
-        std::cout << "===========================" << std::endl;
+        // std::cout << "Assembly time for MAT-VEC: " << K->elapsed_assem << std::endl;
+        // std::cout << "MAT-VEC time: " << K->elapsed_mvp << std::endl;
+        // std::cout << "The error is: " << K->compute_total_error() << std::endl;
+        // std::cout << std::endl;
+        // std::cout << "===========================" << std::endl;
     }
 #endif
 

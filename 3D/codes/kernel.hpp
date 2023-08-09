@@ -184,7 +184,7 @@ public:
 			else
 			{
 				if (i == j)
-					return (double)sqrt(particles.size());
+					return (double) sqrt(particles.size());
 				else
 					return LOGR_over_LOGA_over_LOGR(i, j);
 			}

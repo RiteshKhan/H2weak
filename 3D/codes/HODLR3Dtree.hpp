@@ -2,8 +2,8 @@
 // Remodified from : https://github.com/vaishna77/HODLR3D/ to keep comparable with FMM or H matrix
 // HODLR3D Tree
 //
-#ifndef _FMM3DTreeRAMeff2_HPP__
-#define _FMM3DTreeRAMeff2_HPP__
+#ifndef _HODLR3DTREE_HPP__
+#define _HODLR3DTREE_HPP__
 #include "kernel.hpp"
 #include "aca.hpp"
 #include "HODLR3Dnode.hpp"
@@ -53,7 +53,7 @@ public:
 			boxRadius.push_back(0.5 * boxRadius[k - 1]);
 		}
 		this->smallestBoxSize = boxRadius[nLevels];
-		K->a = smallestBoxSize;
+		this->K->a = smallestBoxSize;
 		this->N = cubeRootN * cubeRootN * cubeRootN;
 	}
 
@@ -1836,23 +1836,6 @@ public:
 		}
 	}
 
-	void print_charge_location1()
-	{
-		// for (int j = 0; j <= nLevels; j++) {
-		for (int k = 0; k < nBoxesPerLevel[nLevels]; k++)
-		{
-			std::cout << tree[nLevels][k]->chargeLocations.size() << std::endl;
-			// std::cout << "At " << "(" << j << " , " << k <<")" << std::endl;
-			// for(auto& itr : tree[j][k]->chargeLocations){
-			// 	std::cout << itr << "  ";
-			// }
-			// std::cout << std::endl;
-			// std::cout << "=====================================================================" << std::endl;
-		}
-		std::cout << "=====================================================================" << std::endl;
-		//}
-	}
-
 	void assignNonLeafChargeLocations()
 	{
 		for (int j = nLevels - 1; j >= 1; j--)
@@ -1865,14 +1848,6 @@ public:
 					tree[j][k]->chargeLocations.insert(tree[j][k]->chargeLocations.end(), tree[j + 1][8 * k + c]->chargeLocations.begin(), tree[j + 1][8 * k + c]->chargeLocations.end());
 				}
 			}
-		}
-	}
-
-	void print_charge_location2()
-	{
-		for (int k = 0; k < nBoxesPerLevel[nLevels]; k++)
-		{
-			std::cout << tree[nLevels][k]->chargeLocations.size() << std::endl;
 		}
 	}
 
@@ -1892,7 +1867,7 @@ public:
 		}
 	}
 
-	//! Far-field interaction using NCA
+	//! Far-field interaction using bottom-top NCA
 
 	void getNodes()
 	{
@@ -2083,7 +2058,7 @@ public:
 	/////////////////////////////////////////////////////////////
 	/*********** potential for vertex sharng interaction *************/
 	////////////////////////////////////////////////////////////
-	// Top down approach
+	// Top-bottom approach
 	void getNodes_incoming_box_vertex(int j, int k, int &ComputedRank)
 	{
 		std::vector<int> boxA_Nodes = tree[j][k]->chargeLocations; // row
@@ -2117,7 +2092,6 @@ public:
 			}
 		}
 		delete LR;
-		// std::cout << "(" << j << "," << k << ")" << " Row = " << boxA_Nodes.size() << " Col = " << IL_Nodes.size() << " Rank = " << ComputedRank << std::endl;
 	}
 
 	void getNodes_ver()
@@ -2457,7 +2431,7 @@ public:
 			int count = 0;
 			Vec potentialTemp = Vec::Zero(N);
 			for (int k = 0; k < nBoxesPerLevel[j]; k++)
-			{ // using the fact that all the leaves have same number of particles
+			{
 				potentialTemp.segment(count, tree[j][k]->potential.size()) = tree[j][k]->potential + tree[j][k]->potential_ver;
 				count += tree[j][k]->potential.size();
 			}
@@ -2504,7 +2478,7 @@ public:
 			int count = 0;
 			Vec potentialTemp = Vec::Zero(N);
 			for (int k = 0; k < nBoxesPerLevel[j]; k++)
-			{ // using the fact that all the leaves have same number of particles
+			{
 				potentialTemp.segment(count, tree[j][k]->potential.size()) = tree[j][k]->potential;
 				count += tree[j][k]->potential.size();
 			}
@@ -2516,13 +2490,11 @@ public:
 	{
 		Vec potentialTemp = potential;
 		int count = 0;
-		// std::cout << "index: " << std::endl;
 		for (int k = 0; k < nBoxesPerLevel[nLevels]; ++k)
 		{
 			for (size_t i = 0; i < tree[nLevels][k]->chargeLocations.size(); ++i)
 			{
 				int index = tree[nLevels][k]->chargeLocations[i];
-				// std::cout << index << std::endl;
 				potential(index) = potentialTemp(count);
 				++count;
 			}
@@ -2531,12 +2503,12 @@ public:
 	}
 
 	void findMemory_n() {
+		// M2M + L2L memory
 		for (int j = 2; j <= nLevels; j++) {
 			for (int k = 0; k < nBoxesPerLevel[j]; k++) {
 				memory += 2*tree[j][k]->L2P[0].size();
 			}
 		}
-
 		for (int j = 1; j <= nLevels; j++) {
 			for (int k = 0; k < nBoxesPerLevel[j]; k++) {
 				if (j == nLevels)
@@ -2574,6 +2546,7 @@ public:
 				}
 			}
 		}
+		// Dense matrices
 		for (int k = 0; k < nBoxesPerLevel[nLevels]; k++) {
 			memory += tree[nLevels][k]->chargeLocations.size()*tree[nLevels][k]->chargeLocations.size(); //self
 			for (size_t n = 0; n < 26; n++) {
@@ -2597,6 +2570,7 @@ public:
 				}
 			}
 		}
+		// Dense matrices
 		for (int k = 0; k < nBoxesPerLevel[nLevels]; k++) {
 			memory += tree[nLevels][k]->chargeLocations.size()*tree[nLevels][k]->chargeLocations.size(); //self
 			for (int n = 0; n < 26; n++) {
@@ -2626,15 +2600,7 @@ public:
 				}
 			}
 		}
-		for (int k = 0; k < nBoxesPerLevel[nLevels]; k++) {
-			memory += tree[nLevels][k]->chargeLocations.size()*tree[nLevels][k]->chargeLocations.size(); //self
-			for (size_t n = 0; n < 26; n++) {
-				int nn = tree[nLevels][k]->neighborNumbers[n];
-				if(nn != -1) {
-					memory += tree[nLevels][k]->chargeLocations.size()*tree[nLevels][nn]->chargeLocations.size();
-				}
-			}
-		}
+
 		for (int j = 1; j <= nLevels; j++) {
 			for (int k = 0; k < nBoxesPerLevel[j]; k++) {
 				for (size_t i = 0; i < tree[j][k]->interactionList.size(); i++) {
@@ -2645,6 +2611,17 @@ public:
 						memory += tree[j][k]->Ac[ki].size();
 						memory += tree[j][k]->Ar[ki].size();
 					}
+				}
+			}
+		}
+
+		// Dense matrices
+		for (int k = 0; k < nBoxesPerLevel[nLevels]; k++) {
+			memory += tree[nLevels][k]->chargeLocations.size()*tree[nLevels][k]->chargeLocations.size(); //self
+			for (size_t n = 0; n < 26; n++) {
+				int nn = tree[nLevels][k]->neighborNumbers[n];
+				if(nn != -1) {
+					memory += tree[nLevels][k]->chargeLocations.size()*tree[nLevels][nn]->chargeLocations.size();
 				}
 			}
 		}

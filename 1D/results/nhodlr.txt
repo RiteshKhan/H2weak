@@ -1,0 +1,31 @@
+GMRES Parameters 
+Maximum Iterations : 500
+GMRES Tolerance : 1e-12
+
+Reached Solution before Max_Iterations 
+Reached the desired tol after 11 iterations
+Final resid 6.81945e-14
+********** Summary of HSS / HBS / nHODLR1D accelerated GMRES to solve a system **********
+
+
+The number of particles taken: 250000 and choice =  RBF interpolation
+
+The maximum number of particles at leaf clusters: 100
+
+Depth of the tree: 12
+
+The final residual error is: 6.81945e-14
+
+The total number of iteration is: 11
+
+Total Assembly time: 47.0822s
+
+GMRES time: 1.49966s
+
+Storage (in GB): 0.658597 GB
+
+Compression ratio: 0.00131719
+
+The (norm-2) relative error in solution: 1.99987e-12
+====================================================================================================
+

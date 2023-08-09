@@ -137,6 +137,7 @@ public:
     {
         for (int j = 0; j < nLevels; ++j)
         {
+            #pragma omp parallel for
             for (int k = 0; k < nNodesPerLevel[j]; ++k)
             {
                 assign_Child0_Interaction(j, k);
@@ -414,130 +415,6 @@ public:
         }
     }
 
-    // Assemble Near-field
-    void assemble_NearField()
-    {
-        #pragma omp parallel for
-        for (int k = 0; k < nNodesPerLevel[nLevels]; k++)
-        {
-            tree[nLevels][k]->denseMatrices = K->getMatrix(tree[nLevels][k]->chargeLocations, tree[nLevels][k]->chargeLocations);
-        }
-    }
-
-    // Evaluate Near-field
-    void evaluate_NearField()
-    {
-        #pragma omp parallel for
-        for (int k = 0; k < nNodesPerLevel[nLevels]; ++k)
-        {
-            // Self interaction
-            tree[nLevels][k]->potential += tree[nLevels][k]->denseMatrices * tree[nLevels][k]->charges;
-        }
-    }
-
-    // The computed total potential
-    void collect_all_potentials(Vec &potential)
-    {
-        potential = Vec::Zero(N);
-        for (int j = 1; j <= nLevels; j++)
-        {
-            int count = 0;
-            Vec potentialTemp = Vec::Zero(N);
-            for (int k = 0; k < nNodesPerLevel[j]; k++)
-            { // using the fact that all the leaves have same number of particles
-                potentialTemp.segment(count, tree[j][k]->potential.size()) = tree[j][k]->potential;
-                count += tree[j][k]->potential.size();
-            }
-            potential += potentialTemp;
-        }
-    }
-
-    void reorder(Vec &potential)
-    {
-        Vec potentialTemp = potential;
-        int count = 0;
-        // std::cout << "index: " << std::endl;
-        for (int k = 0; k < nNodesPerLevel[nLevels]; ++k)
-        {
-            for (size_t i = 0; i < tree[nLevels][k]->chargeLocations.size(); ++i)
-            {
-                int index = tree[nLevels][k]->chargeLocations[i];
-                potential(index) = potentialTemp(count);
-                ++count;
-            }
-        }
-        collective_potential = potential;
-    }
-
-    // void findMemory() {
-    // 	for (int j = 2; j <= nLevels; j++) {
-    // 		for (int k = 0; k < nBoxesPerLevel[j]; k++) {
-    // 			memory += 2*tree[j][k].L2P[0].size();
-    // 		}
-    // 	}
-
-    // 	for (int j = 1; j <= nLevels; j++) {
-    // 		for (int k = 0; k < nBoxesPerLevel[j]; k++) {
-    // 			if (j == nLevels)
-    // 			{
-    // 				memory += 2*tree[j][k].M2M_ver[0].size();
-    // 			}
-    // 			else
-    // 			{
-    // 				for (int c = 0; c < 4; c++)
-    // 				{
-    // 					memory += 2*tree[j][k].M2M_ver[c].size();
-    // 				}
-    // 			}
-    // 		}
-    // 	}
-
-    // 	// M2L memory
-    // 	for (int j = 2; j <= nLevels; j++) {
-    // 		for (int k = 0; k < nBoxesPerLevel[j]; k++) {
-    //             for (int in = 0; in < 12; ++in)
-    //             {
-    //                 int kIL = tree[j][k].innerNumbers[in];
-    //                 if (kIL != -1)
-    //                 {
-    //                     memory += tree[j][k].M2L_far[kIL].size();
-    //                 }
-    //             }
-    //             for (int on = 0; on < 12; ++on)
-    //             {
-    //                 int kIL = tree[j][k].outerNumbers[on];
-    //                 if (kIL != -1)
-    //                 {
-    //                     memory += tree[j][k].M2L_far[kIL].size();
-    //                 }
-    //             }
-    // 		}
-    // 	}
-    // 	for (int j = 1; j <= nLevels; j++) {
-    // 		for (int k = 0; k < nBoxesPerLevel[j]; k++) {
-    //             for (int co = 0; co < 4; ++co)
-    //             {
-    //                 int kIL = tree[j][k].cornerNumbers[co];
-    //                 if (kIL != -1)
-    //                 {
-    //                     memory += tree[j][k].M2L_ver[kIL].size();
-    //                 }
-    //             }
-    // 		}
-    // 	}
-    // 	for (int k = 0; k < nBoxesPerLevel[nLevels]; k++) {
-    // 		memory += tree[nLevels][k].chargeLocations.size()*tree[nLevels][k].chargeLocations.size(); //self
-    // 		for (size_t n = 0; n < 4; n++) {
-    // 			int nn = tree[nLevels][k].neighborNumbers[n];
-    // 			if(nn != -1) {
-    // 				memory += tree[nLevels][k].chargeLocations.size()*tree[nLevels][nn].chargeLocations.size();
-    // 			}
-    // 		}
-    // 	}
-    // }
-
-
-
     void getUVtInstance(int j, int k, int kIL, Mat &U, Mat &V)
     {
         int computed_rank;
@@ -585,6 +462,44 @@ public:
         }
     }
 
+    // Assemble Near-field
+    void assemble_NearField()
+    {
+        #pragma omp parallel for
+        for (int k = 0; k < nNodesPerLevel[nLevels]; k++)
+        {
+            tree[nLevels][k]->denseMatrices = K->getMatrix(tree[nLevels][k]->chargeLocations, tree[nLevels][k]->chargeLocations);
+        }
+    }
+
+    // Evaluate Near-field
+    void evaluate_NearField()
+    {
+        #pragma omp parallel for
+        for (int k = 0; k < nNodesPerLevel[nLevels]; ++k)
+        {
+            // Self interaction
+            tree[nLevels][k]->potential += tree[nLevels][k]->denseMatrices * tree[nLevels][k]->charges;
+        }
+    }
+
+    // The computed total potential
+    void collect_all_potentials(Vec &potential)
+    {
+        potential = Vec::Zero(N);
+        for (int j = 1; j <= nLevels; j++)
+        {
+            int count = 0;
+            Vec potentialTemp = Vec::Zero(N);
+            for (int k = 0; k < nNodesPerLevel[j]; k++)
+            { 
+                potentialTemp.segment(count, tree[j][k]->potential.size()) = tree[j][k]->potential;
+                count += tree[j][k]->potential.size();
+            }
+            potential += potentialTemp;
+        }
+    }
+
     void collect_all_potential_nn(Vec &potential)
     {
         potential = Vec::Zero(N);
@@ -593,11 +508,82 @@ public:
             int count = 0;
             Vec potentialTemp = Vec::Zero(N);
             for (int k = 0; k < nNodesPerLevel[j]; k++)
-            { // using the fact that all the leaves have same number of particles
+            { 
                 potentialTemp.segment(count, tree[j][k]->potential.size()) = tree[j][k]->potential;
                 count += tree[j][k]->potential.size();
             }
             potential += potentialTemp;
+        }
+    }
+
+    void reorder(Vec &potential)
+    {
+        Vec potentialTemp = potential;
+        int count = 0;
+        for (int k = 0; k < nNodesPerLevel[nLevels]; ++k)
+        {
+            for (size_t i = 0; i < tree[nLevels][k]->chargeLocations.size(); ++i)
+            {
+                int index = tree[nLevels][k]->chargeLocations[i];
+                potential(index) = potentialTemp(count);
+                ++count;
+            }
+        }
+        collective_potential = potential;
+    }
+
+    void findMemory_n() {
+        // M2M + L2L memory
+    	for (int j = 1; j <= nLevels; j++) {
+    		for (int k = 0; k < nNodesPerLevel[j]; k++) {
+    			if (j == nLevels)
+    			{
+    				memory += 2*tree[j][k]->M2M[0].size();
+    			}
+    			else
+    			{
+    				for (int c = 0; c < 2; c++)
+    				{
+    					memory += 2*tree[j][k]->M2M[c].size();
+    				}
+    			}
+    		}
+    	}
+
+    	// M2L memory
+    	for (int j = 1; j <= nLevels; j++) {
+    		for (int k = 0; k < nNodesPerLevel[j]; k++) {
+                for (int nn = 0; nn < 2; ++nn)
+                {
+                    int kIL = tree[j][k]->neighborNumbers[nn];
+                    if (kIL != -1)
+                    {
+                        memory += tree[j][k]->M2L[kIL].size();
+                    }
+                }
+    		}
+    	}
+
+       // Dense matrices
+    	for (int k = 0; k < nNodesPerLevel[nLevels]; k++) {
+    		memory += tree[nLevels][k]->denseMatrices.size(); //self
+    	}
+    }
+
+    void findMemory_sn() {
+        for (int j = 1; j <= nLevels; j++)
+        {
+            for (int k = 0; k < nNodesPerLevel[j]; k++)
+            {
+                for (int nn = 0; nn < 2; ++nn)
+                {
+                    int kIL = tree[j][k]->neighborNumbers[nn];
+                    if (kIL != -1)
+                    {
+                        memory += tree[j][k]->U[kIL].size() + tree[j][k]->V[kIL].size();
+                    }
+                }
+            }
         }
     }
 
@@ -616,6 +602,7 @@ public:
         }
         return true_poten;
     }
+
     // Total relative error
     double compute_total_error()
     {

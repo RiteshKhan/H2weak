@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
    // srand(time(NULL));
    // rand();
    int sqrtRootN = atoi(argv[1]);               // Square root of total particles, i.e., sqrt(N)
-   int nParticlesInLeafAlong1D = atoi(argv[2]); // Number of partilces along 1D at leaf level, i.e, sqrt(n_max) as per paper.
+   int nParticlesInLeafAlong1D = atoi(argv[2]); // Maximum number of partilces along 1D at leaf level, i.e, sqrt(n_max) as per paper.
    int L = atoi(argv[3]);                       // Semi-length of the cluster
    int TOL_POW = atoi(argv[4]);                 // Tolerance of the ACA/NCA
    int Choice = atoi(argv[5]);                  // Integral equation = 0, RBF interpolation = 1

@@ -298,7 +298,7 @@ public:
 #ifdef USE_real
 	dtype getMatrixEntry(const unsigned i, const unsigned j)
 	{
-		if (ker_choice != 0)
+		if (ker_choice != 0 && ker_choice != 1)
 		{
 			std::cout << "Wrong choice! Please give correct input " << std::endl;
 			exit(1);
@@ -307,46 +307,12 @@ public:
 		{
 			if (ker_choice == 0)
 				return IE_2D(i, j);
-			if (ker_choice == 1)
-				return RBF_Logarithm(i, j);
-			else if (ker_choice == 2)
-				return RBF_Exponential(i, j);
-			else if (ker_choice == 3)
-				return RBF_Inverse_Quadratic(i, j);
-			else if (ker_choice == 4)
-				return RBF_Sin(i, j);
-			else if (ker_choice == 5)
-				return RBF_Gaussian(i, j);
-			else if (ker_choice == 6)
-				return R_over_A_over_R(i, j);
-			else if (ker_choice == 7)
-			{
-				if (i == j)
-					return 10000.0;
-				else
-					return Laplacian_2D(i, j);
-			}
-			else if (ker_choice == 8)
-			{
-				if (i == j)
-					return 0.0;
-				else
-					return Laplacian_3D(i, j);
-			}
-			else if (ker_choice == 9)
-			{
-				if (i == j)
-					return 0.0;
-				else
-					return oneOverR4(i, j);
-			}
-			else if (ker_choice == 10)
-			{
-				return RBF_spline(i, j);
-			}
 			else
 			{
-				return Helmholtz_cos(i, j);
+				if (i == j)
+					return (double) 1.0;
+				else 
+					return R_over_A_over_R(i, j);
 			}
 		}
 	}

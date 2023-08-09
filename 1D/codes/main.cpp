@@ -4,8 +4,8 @@ int main(int argc, char *argv[])
 {
    // srand(time(NULL));
    // rand();
-   int N = atoi(argv[1]);               // Square root of total particles, i.e., sqrt(N)
-   int nParticlesInLeaf = atoi(argv[2]); // Number of partilces along 1D at leaf level, i.e, sqrt(n_max) as per paper.
+   int N = atoi(argv[1]);                       // Total number of particles, i.e., N
+   int nParticlesInLeaf = atoi(argv[2]);        // Maximum number of partilces at leaf level, i.e, n_max as per paper.
    int L = atoi(argv[3]);                       // Semi-length of the cluster
    int TOL_POW = atoi(argv[4]);                 // Tolerance of the ACA/NCA
    int Choice = atoi(argv[5]);                  // Integral equation = 0, RBF interpolation = 1
@@ -40,13 +40,13 @@ int main(int argc, char *argv[])
    end = omp_get_wtime();
    double elapsed_gmres = end - start;
 
-// #ifdef USE_nHODLRdD
-//    p->K->findMemory_n();
-// #endif
+#ifdef USE_nHODLRdD
+   p->K->findMemory_n();
+#endif
 
-// #ifdef USE_snHODLRdD
-//    p->K->findMemory_sn();
-// #endif
+#ifdef USE_snHODLRdD
+   p->K->findMemory_sn();
+#endif
 
 #ifdef USE_nHODLRdD
    std::cout << "********** Summary of HSS / HBS / nHODLR1D accelerated GMRES to solve a system **********" << std::endl
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
    std::cout << "Compression ratio: " << (p->K->memory) / (1.0 * p->K->N * p->K->N) << "\n"
              << std::endl;
    std::cout << "The (norm-2) relative error in solution: " << (x - b).norm() / b.norm() << std::endl;
-   std::cout << "===================================================================================================="
+   std::cout << "==========================================================================================="
              << "\n"
              << std::endl;
    delete its;

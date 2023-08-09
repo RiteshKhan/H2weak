@@ -4,8 +4,8 @@ LDFLAGS		=-fopenmp -std=c++17 -I../
 SOURCES		=./main.cpp
 OBJECTS		=$(SOURCES:.cpp=.o)
 
-DTYPE_FLAG  = -DUSE_real -DUSE_nHODLRdD # DUSE_nHODLRdD (nested) or -DUSE_snHODLRdD (semi-nested) or -DUSE_HODLRdD (non-nested)
-# DTYPE_FLAG  = -DUSE_Complex # DUSE_nHODLRdD or -DUSE_snHODLRdD or -DUSE_HODLRdD
+DTYPE_FLAG  = -DUSE_real -DUSE_nHODLRdD # DUSE_nHODLRdD (nested) or -DUSE_snHODLRdD (semi-nested) 
+# DTYPE_FLAG  = -DUSE_Complex # DUSE_nHODLRdD or -DUSE_snHODLRdD
 
 EXECUTABLE	=./test
 

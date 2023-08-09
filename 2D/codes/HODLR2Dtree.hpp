@@ -411,6 +411,7 @@ public:
     {
         for (int j = 0; j < nLevels; ++j)
         {
+            #pragma omp parallel for
             for (int k = 0; k < nBoxesPerLevel[j]; ++k)
             {
                 assign_Child0_Interaction(j, k);
@@ -736,7 +737,7 @@ public:
     /*********** potential for vertex sharng interaction *************/
     ///////////////////////////////////////////////////////////////////
 
-    // Top down approach
+    // Top-bottom approach
 	void getNodes_incoming_box_vertex(int j, int k, int &ComputedRank)
 	{
 		std::vector<int> boxA_Nodes = tree[j][k]->chargeLocations; // row
@@ -1204,6 +1205,7 @@ public:
     }
 
 	void findMemory_n() {
+        // M2M + L2L memory
 		for (int j = 2; j <= nLevels; j++) {
 			for (int k = 0; k < nBoxesPerLevel[j]; k++) {
 				memory += 2*tree[j][k]->L2P[0].size();
@@ -1247,6 +1249,8 @@ public:
 				}
 			}
 		}
+
+        // Dense matrices
 		for (int k = 0; k < nBoxesPerLevel[nLevels]; k++) {
 			memory += tree[nLevels][k]->chargeLocations.size()*tree[nLevels][k]->chargeLocations.size(); //self
 			for (size_t n = 0; n < 4; n++) {
