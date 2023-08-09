@@ -41,11 +41,11 @@ Now the user can go to any directory to run the corresponding codes in $1D$ or $
 user@computer 1D/codes$ make -f Makefile1D.mk clean && make -f Makefile1D.mk
 ```
 In $1D$ if we set the following in the `main` file, 
-1. `atoi(argv[1])` $= N = 100000$ (Number of particles)
+1. `atoi(argv[1])` $= N = 250000$ (Number of particles)
 2. `atoi(argv[2])` $=n_{max} = 100$ (Number of maximum particles in leaf clusters)
 3. `atoi(argv[3])` $=L=1$ (Semi-length of the cluster)
 4. `atoi(argv[4])` $=12$ (NCA/ACA tolerance $= 10^{-12}$ and $\epsilon_{GMRES} = 10^{-12}$)
-5. `atoi(argv[5])` $=0$ (Intergral equation solver=0 or RBF interpolation=1)
+5. `atoi(argv[5])` $=1$ (Intergral equation solver=0 or RBF interpolation=1)
 
 ```txt
 GMRES Parameters 
@@ -53,29 +53,32 @@ Maximum Iterations : 500
 GMRES Tolerance : 1e-12
 
 Reached Solution before Max_Iterations 
-Reached the desired tol after 14 iterations
-Final resid 8.00989e-14
+Reached the desired tol after 11 iterations
+Final resid 6.81945e-14
 ********** Summary of HSS / HBS / nHODLR1D accelerated GMRES to solve a system **********
 
 
-The number of particles taken: 100000 and choice =  integral equation
+The number of particles taken: 250000 and choice =  RBF interpolation
 
 The maximum number of particles at leaf clusters: 100
 
-Depth of the tree: 10
+Depth of the tree: 12
 
-The final residual error is: 8.00989e-14
+The final residual error is: 6.81945e-14
 
-The total number of iteration is: 14
+The total number of iteration is: 11
 
-Total Assembly time: 8.35056s
+Total Assembly time: 47.0822s
 
-GMRES time: 0.494335s
+GMRES time: 1.49966s
 
-Storage (in GB): 0.1647 GB
+Storage (in GB): 0.658597 GB
 
-Compression ratio: 0.00205876
+Compression ratio: 0.00131719
 
-The (norm-2) relative error in solution: 2.43411e-12
+The (norm-2) relative error in solution: 1.99987e-12
+=========================================================================================
+
+
 ===========================================================================================
 ```
