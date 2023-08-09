@@ -84,3 +84,38 @@ Compression ratio: 0.00131719
 The (norm-2) relative error in solution: 1.99987e-12
 =========================================================================================
 ```
+
+```
+GMRES Parameters 
+Maximum Iterations : 500
+GMRES Tolerance : 1e-12
+
+Reached Solution before Max_Iterations 
+Reached the desired tol after 11 iterations
+Final resid 6.63218e-14
+********** Summary of HODLR / HODLR1D accelerated GMRES to solve a system **********
+
+
+The number of particles taken: 250000 and choice =  RBF interpolation
+
+The maximum number of particles at leaf clusters: 100
+
+Depth of the tree: 12
+
+The final residual error is: 6.63218e-14
+
+The total number of iteration is: 11
+
+Total Assembly time: 26.4311s
+
+GMRES time: 2.37944s
+
+Storage (in GB): 1.61 GB
+
+Compression ratio: 0.00322
+
+The (norm-2) relative error in solution: 8.68101e-13
+====================================================================================
+
+
+```
