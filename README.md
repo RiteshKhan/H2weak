@@ -29,3 +29,8 @@ ______________________________________________________________________
 
 ### Testing
 Make sure that you have set the path of the libraries correctly. The path can be modified in the `Makefile`. For testing purpose we have added two options (i) Integral Equation solver and (ii) RBF interpolation.
+
+To test the code simply run the following commands in the terminal.
+```
+mkdir build && cd build
+```
