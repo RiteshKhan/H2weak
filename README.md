@@ -15,5 +15,5 @@ User can run $3$ different types of fast iterative solver using this repository.
 _____________________
 
 ## Dependencies
-1. The 
+1. The Eigen linear algebra libray
 
