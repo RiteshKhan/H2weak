@@ -35,7 +35,7 @@ To test the code simply run the following commands in the terminal.
 user@computer nHODLRdD$ mkdir build && cd build
 ```
 
-Now the user can go to any directory to run the codes in $1D$ or $2D$ or $3D$. For example, to run the code in $1$D
+Now the user can go to any directory to run the corresponding codes in $1D$ or $2D$ or $3D$. For example, to run the code in $1D$
 ```
-
+user@computer 1D$ make -f Makefile1D.mk clean  && make -f Makefile1D.mk
 ```
