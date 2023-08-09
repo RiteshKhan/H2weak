@@ -15,5 +15,6 @@ User can run $3$ different types of fast iterative solver using this repository.
 _____________________
 
 ### Dependencies
-1. The [**Eigen**](https://eigen.tuxfamily.org) linear algebra libray
+1. The [**Eigen**](https://eigen.tuxfamily.org) linear algebra libray.
+2. The [**Boost**](https://www.boost.org/) library.
 
