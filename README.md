@@ -47,7 +47,7 @@ In $1D$ if we set the following in the `main` file,
 4. `atoi(argv[4])` $=12$ (NCA/ACA tolerance $= 10^{-12}$ and $\epsilon_{GMRES} = 10^{-12}$)
 5. `atoi(argv[5])` $=0$ (Intergral equation solver=0 or RBF interpolation=1)
 
-```txt
+`txt
 GMRES Parameters 
 Maximum Iterations : 500
 GMRES Tolerance : 1e-12
@@ -78,4 +78,4 @@ Compression ratio: 0.00205876
 
 The (norm-2) relative error in solution: 1.33411e-11
 ===========================================================================================
-```
+`
