@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 #endif
     std::cout << "The number of particles taken: " << p->K->N << " and choice = " << (Choice == 0 ? "integral equation" : "RBF interpolation") << std::endl
               << std::endl;
-    std::cout << "The maximum number of particles at leaf level: " << nParticlesInLeafAlong1D * nParticlesInLeafAlong1D * nParticlesInLeafAlong1D << std::endl
+    std::cout << "The maximum number of particles at leaf clusters: " << nParticlesInLeafAlong1D * nParticlesInLeafAlong1D * nParticlesInLeafAlong1D << std::endl
               << std::endl;
     std::cout << "Depth of the tree: " << nLevels << std::endl
               << std::endl;
