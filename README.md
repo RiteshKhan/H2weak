@@ -32,5 +32,5 @@ Make sure that you have set the path of the libraries correctly. The path can be
 
 To test the code simply run the following commands in the terminal.
 ```
-mkdir build && cd build
+user@computer nHODLRdD$ mkdir build && cd build
 ```
