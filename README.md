@@ -1,5 +1,5 @@
 # The $nHODLRdD$ and $s-nHODLRdD$ accelerated iterative solver 
-This repository mainly contains two different fast iterative solvers (GMRES), accelerated using the following fast matrix-vector product algorithms.
+This repository mainly contains two new fast iterative solvers (GMRES), accelerated using the following fast matrix-vector product algorithms.
 1. The nested hierarchically off-diagonal low-rank matrix in $d$ dimensions ($nHODLRdD$)
 2. The semi-nested hierarchically off-diagonal low-rank matrix in $d$ dimensions ($s-nHODLRdD$)
    
