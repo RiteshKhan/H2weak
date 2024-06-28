@@ -23,7 +23,7 @@ ______________________________________________________________________
 ### Download the Source code
 The source code available in this repository can be cloned using:
 ```
-git clone https://github.com/riteshkhan/nHODLRdD.git --recursive
+git clone https://github.com/riteshkhan/H2weak.git --recursive
 ```
 ______________________________________________________________________
 
