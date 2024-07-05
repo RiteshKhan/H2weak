@@ -1,4 +1,4 @@
-# The $\mathcal{H}^2_{weak}$ and ${(\mathcal{H}^2 + \mathcal{H})}_{weak}$ accelerated iterative solver
+# The $\mathcal{H}^2_{*}$ and ${(\mathcal{H}^2 + \mathcal{H})}_{*}$ accelerated iterative solver
 This repository mainly contains two new fast iterative solvers (GMRES), accelerated using the following fast matrix-vector product algorithms.
 1. The nested hierarchically off-diagonal low-rank matrix in $d$ dimensions, $\mathcal{H}^2_{weak}$
 2. The semi-nested hierarchically off-diagonal low-rank matrix in $d$ dimensions, ${(\mathcal{H}^2 + \mathcal{H})}_{weak}$
