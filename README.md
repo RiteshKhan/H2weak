@@ -3,15 +3,15 @@ This repository mainly contains two new fast iterative solvers (GMRES), accelera
 1. The nested hierarchically off-diagonal low-rank matrix in $d$ dimensions, $\mathcal{H}^2_{weak}$
 2. The semi-nested hierarchically off-diagonal low-rank matrix in $d$ dimensions, ${(\mathcal{H}^2 + \mathcal{H})}_{weak}$
    
-The $nHODLRdD$ and $s-nHODLRdD$ algorithms are the nested and sem-nested versions of the previously proposed $HODLRdD$ algorithm. The $HODLRdD$ fast algorithm can be found [here](https://github.com/SAFRAN-LAB/HODLRdD), which works for any user-given dimension $d$. Due to the use of the nested / semi-nested bases, the $nHODLRdD$ and $s-nHODLRdD$ algorithms are faster than the $HODLRdD$ algorithm.
-Users can also run the $HODLRdD$ accelerated iterative solver using this repository by changing the flag in `Makefile` and the codes are self-explanatory. Currently, this repository works for $d=1,2,3$, i.e., in $1D$, $2D$ and $3D$.
+The $nHODLRdD$ and $s-nHODLRdD$ algorithms are the nested and sem-nested versions of the previously proposed $HODLRdD$ algorithm. The $\mathcal{H}_{*}$ fast algorithm can be found [here](https://github.com/SAFRAN-LAB/HODLRdD), which works for any user-given dimension $d$. Due to the use of the nested / semi-nested bases, the $\mathcal{H}^2_{*}$ and ${(\mathcal{H}^2 + \mathcal{H})}_{ * }$ algorithms are faster than the $HODLRdD$ algorithm.
+Users can also run the $\mathcal{H}_{*}$ accelerated iterative solver using this repository by changing the flag in `Makefile`, and the codes are self-explanatory. Currently, this repository works for $d=1,2,3$, i.e., in $1D$, $2D$ and $3D$.
 ______________________________________________________________
 
 # How to run the code
-User can run $3$ different types of fast iterative solver using this repository.
-1. $nHODLRdD$ accelerated iterative solver.
-2. $s-nHODLRdD$ accelerated iterative solver.
-3. $HODLRdD$ accelerated iterative solver.
+Users can run $3$ different types of fast iterative solvers using this repository.
+1.  $\mathcal{H}^2_{*}$ accelerated iterative solver.
+2. ${(\mathcal{H}^2 + \mathcal{H})}_{ * }$ accelerated iterative solver.
+3. $\mathcal{H}_{*}$ accelerated iterative solver.
 _____________________
 
 ### Dependencies
@@ -28,14 +28,14 @@ git clone https://github.com/riteshkhan/H2weak.git --recursive
 ______________________________________________________________________
 
 ### Testing
-Make sure that you have set the path of the libraries correctly. The path can be modified in the `Makefile`. For testing purpose we have added two options (i) Integral Equation solver and (ii) RBF interpolation.
+Make sure that you have set the path of the libraries correctly. The path can be modified in the `Makefile`. For testing purposes, we have added two options: (i) Integral Equation solver and (ii) RBF interpolation.
 
-To test the code simply run the following commands in the terminal.
+To test the code, run the following commands on the terminal.
 ```
 user@computer nHODLRdD$ mkdir build && cd build
 ```
 
-Now the user can go to any directory to run the corresponding codes in $1D$ or $2D$ or $3D$. For example, to run the code in $1D$
+Now, the user can go to any directory to run the corresponding codes in $1D$ or $2D$ or $3D$. For example, to run the code in $1D$
 
 ```
 user@computer 1D/codes$ make -f Makefile1D.mk clean && make -f Makefile1D.mk
@@ -51,7 +51,7 @@ In $1D$ if we set the following inputs in the `main` file,
 user@computer 1D/codes$ ./test 250000 100 1 12 1
 ```
 
-If everything is fine one might get output like below.
+If everything is fine, one might get the output below.
 ```txt
 GMRES Parameters 
 Maximum Iterations : 500
