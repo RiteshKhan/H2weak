@@ -3,11 +3,6 @@ This repository mainly contains two new fast iterative solvers (GMRES), accelera
 1. The nested hierarchically off-diagonal low-rank matrix in $d$ dimensions, $\mathcal{H}^2_{ * }$
 2. The semi-nested hierarchically off-diagonal low-rank matrix in $d$ dimensions, ${(\mathcal{H}^2 + \mathcal{H})}_{ * }$
    
-
-The $\mathcal{H}^2_{ * }$ and ${(\mathcal{H}^2 + \mathcal{H})}_{*}$ 
-
-algorithms are the nested and sem-nested versions of the previously proposed $HODLRdD$ algorithm. The $\mathcal{H}_{*}$ fast algorithm can be found [here](https://github.com/SAFRAN-LAB/HODLRdD), which works for any user-given dimension $d$. Due to the use of the nested / semi-nested bases, the $\mathcal{H}^2_{ * }$ and ${(\mathcal{H}^2 + \mathcal{H})}_{ * }$ algorithms are faster than the $HODLRdD$ algorithm.
-Users can also run the $\mathcal{H}_{*}$ accelerated iterative solver using this repository by changing the flag in `Makefile`, and the codes are self-explanatory. Currently, this repository works for $d=1,2,3$, i.e., in $1D$, $2D$ and $3D$.
 ______________________________________________________________
 
 # How to run the code
